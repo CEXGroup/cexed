@@ -8,6 +8,7 @@ var routes = require('./routes');
 var socket = require('./routes/socket.js');
 var http = require('http');
 
+console.log("A");
 
 //var a = express();
 //var app = http.createServer(ex);
@@ -17,6 +18,8 @@ var app = module.exports = express.createServer();
 var io = require('socket.io').listen(app);
 
 // Configuration
+
+console.log("B");
 
 app.configure(function(){
   app.set('views', __dirname + '/views');
@@ -30,9 +33,13 @@ app.configure(function(){
   app.use(app.router);
 });
 
+console.log("C");
+
 app.configure('development', function(){
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
+
+console.log("D");
 
 app.configure('production', function(){
   app.use(express.errorHandler());
@@ -45,10 +52,11 @@ app.get('/partials/:name', routes.partials);
 
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);
-
+console.log("F")
 // Socket.io Communication
 
 io.sockets.on('connection', socket);
+console.log("g");
 
 // Start server
 
