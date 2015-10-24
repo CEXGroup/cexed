@@ -16,7 +16,9 @@
 		<div class = 'holder'>
     	<div class = 'shit'>
 				<div class = 'chat'>
-					<input type="text" name="textMessage" id='textMessage' placeholder="Type Your Lyrics Here">
+					    <form id="form" action="" onsubmit="return submitfunction();" > 
+							<input type="hidden" id="user" value="" /><input id="m" autocomplete="off" onkeyup="notifyTyping();" placeholder="Type yor message here.." /><input type="submit" id="button" value="Send"/> 
+						</form>
 				</div>
 				<div class = 'message'>
 				</div>
