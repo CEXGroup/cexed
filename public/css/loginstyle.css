@@ -164,7 +164,8 @@ html, body {
   background-color: transparent;
   border-left: solid 1px #46494C;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: top;
   margin: 5% 5% 5% 2%;
   width: 30%;
 }
@@ -201,4 +202,8 @@ html, body {
 #messages {
   font-size: 20px;
   list-style-type:none;
+}
+
+#timer_div {
+  font-size: 30px;
 }

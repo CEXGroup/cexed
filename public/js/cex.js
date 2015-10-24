@@ -1,5 +1,9 @@
 var login = true;
 
+function scroll() {
+  console.log('SCROLL');
+  document.getElementById('messages').scrollTo(0, document.body.scrollHeight);
+}
 
 function triainglesBitches() {
   var container = document.getElementById('container');
