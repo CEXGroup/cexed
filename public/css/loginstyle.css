@@ -60,7 +60,17 @@ html, body {
 #container {
   position: absolute;
   width: 100%;
-  display: flex;
+  /*display: flex;*/
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  height: 100%;
+}
+
+#chat_container {
+  position: absolute;
+  width: 100%;
+  /*display: flex;*/
   justify-content: center;
   align-items: center;
   flex-grow: 1;

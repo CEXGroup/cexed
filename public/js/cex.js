@@ -18,19 +18,19 @@ document.body.appendChild(Trianglify({variance: "1",
 
 function changeScreen() {
   if(login) {
-    $('#container').addClass('.inactiveDiv');
-    $('#container').removeClass('.activeDiv');
+    $('#container').addClass('inactiveDiv');
+    $('#container').removeClass('activeDiv');
 
     $('#chat_container').removeClass('inactiveDiv');
-    $('#chat_container').addClass('.activeDiv');
+    $('#chat_container').addClass('activeDiv');
 
     login = false;
   } else {
-    $('#chat_container').removeClass('.activeDiv');
-    $('#chat_container').addClass('.inactiveDiv');
+    $('#chat_container').removeClass('activeDiv');
+    $('#chat_container').addClass('inactiveDiv');
 
     $('#container').removeClass('inactiveDiv');
-    $('#container').addClass('.activeDiv');
+    $('#container').addClass('activeDiv');
     login = true;
   }
 }
