@@ -23,6 +23,7 @@ io.on('connection', function(socket){
   socket.on('chatMessage', function(from, msg){
 	  if (prevFrom !== from){
 		prevFrom = from;
+		io.emit('playerOnesTurn');
 		io.emit('chatMessage', from, msg);
 	  }
   });
