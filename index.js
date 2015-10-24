@@ -2,6 +2,7 @@ var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var path = require('path');
+var prevFrom = '';
 
 // Initialize appication with route / (that means root of the application)
 app.get('/', function(req, res){
@@ -20,7 +21,10 @@ app.get('/index.html', function(req, res){
 io.on('connection', function(socket){
 
   socket.on('chatMessage', function(from, msg){
-    io.emit('chatMessage', from, msg);
+	  if (prevFrom !== from){
+		prevFrom = from;
+		io.emit('chatMessage', from, msg);
+	  }
   });
   socket.on('notifyUser', function(user){
     io.emit('notifyUser', user);
