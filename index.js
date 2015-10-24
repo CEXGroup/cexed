@@ -9,6 +9,12 @@ app.get('/', function(req, res){
   app.use(express.static(path.join(__dirname)));
   res.sendFile(path.join(__dirname, 'views/login.html'));
 });
+
+app.get('/index.html', function(req, res){
+  var express=require('express');
+  app.use(express.static(path.join(__dirname)));
+  res.sendFile(path.join(__dirname, 'views/index.html'));
+});
  
 // Register events on socket connection
 io.on('connection', function(socket){ 
