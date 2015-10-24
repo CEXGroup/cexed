@@ -26,11 +26,12 @@ socket.on('notifyUser', function(user){
   if(user != me) {
     $('#notifyUser').text(user + ' is typing ...');
   }
-  setTimeout(function(){ $('#notifyUser').text(''); }, 10000);;
+  setTimeout(function(){ $('#notifyUser').text(''); }, 10000);
 });
  
 $(document).ready(function(){
-  var name = makeid();
+  /* var name = makeid(); */
+  var name = document.getElementById('username').value;
   $('#user').val(name);
   socket.emit('chatMessage', 'System', '<b>' + name + '</b> has joined the discussion');
 });
@@ -38,7 +39,7 @@ $(document).ready(function(){
 function makeid() {
   var text = "";
   var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
- 
+  
   for( var i=0; i < 5; i++ ) {
     text += possible.charAt(Math.floor(Math.random() * possible.length));
   }
