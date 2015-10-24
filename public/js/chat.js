@@ -109,9 +109,11 @@ socket.on('playerTwosTurn', function(){
 
       if (seconds_left <= 0)
       {
+          if(current_sec >=min_sec)
+              current_sec -= 2;
           seconds_left = current_sec;
 
-          document.getElementById('timer_div').innerHTML = 'You are ready'; //--------emit signal
+          document.getElementById('timer_div').innerHTML = 'You are ready'; 
           clearInterval(interval);
           socket.emit('pauseA'); 
       }
@@ -124,8 +126,8 @@ socket.on('pauseA', function(){
 
       if (seconds_left <= 0)
       {
-          seconds_left = current_sec;
-          document.getElementById('timer_div').innerHTML = 'You are ready'; //--------emit signal
+           seconds_left = current_sec;
+          document.getElementById('timer_div').innerHTML = 'You are ready';
           clearInterval(interval);
                     socket.emit('playerOnesTurn'); 
 
@@ -140,7 +142,7 @@ socket.on('pauseB', function(){
       if (seconds_left <= 0)
       {
           seconds_left = current_sec;
-          document.getElementById('timer_div').innerHTML = 'You are ready'; //--------emit signal
+          document.getElementById('timer_div').innerHTML = 'You are ready'; 
           clearInterval(interval);
           socket.emit('playerTwosTurn'); 
 
