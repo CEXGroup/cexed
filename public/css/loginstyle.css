@@ -22,6 +22,7 @@ html, body {
   height: 100%;
   justify-content: center;
   margin: 10px 10px 10px 10px;
+  width: 100%;
   /*position: absolute;*/
 }
 
@@ -60,7 +61,17 @@ html, body {
 #container {
   position: absolute;
   width: 100%;
-  display: flex;
+  /*display: flex;*/
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  height: 100%;
+}
+
+#chat_container {
+  position: absolute;
+  width: 100%;
+  /*display: flex;*/
   justify-content: center;
   align-items: center;
   flex-grow: 1;
@@ -145,6 +156,7 @@ html, body {
   display: flex;
   flex-grow: 1;
   flex-direction: row;
+  width: 75%;
 }
 
 .information {
