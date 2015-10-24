@@ -27,3 +27,17 @@ var interval = setInterval(function() {
         clearInterval(interval);
     }
 }, 1000);
+
+
+
+socket.on('playerOneBegin', function(){
+
+});
+
+Start timer on button press
+
+only allow player A to type quote
+
+if quote entered, have small pause or button and then b starts
+
+decrement timer

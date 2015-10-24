@@ -78,3 +78,60 @@ function makeid() {
   }
   return text;
 }
+
+var current_sec  =20
+var seconds_left = 20;
+var min_sec = 10
+
+socket.on('playerOnesTurn', function(){
+  var interval = setInterval(function() {
+      document.getElementById('timer_div').innerHTML = --seconds_left;
+
+      if (seconds_left <= 0)
+      {
+          socket.emit('pauseB'); 
+          clearInterval(interval);
+      }
+  }, 1000);
+});
+
+socket.on('playerTwosTurn', function(){
+  var interval = setInterval(function() {
+      document.getElementById('timer_div').innerHTML = --seconds_left;
+
+      if (seconds_left <= 0)
+      {
+          document.getElementById('timer_div').innerHTML = 'You are ready'; //--------emit signal
+          clearInterval(interval);
+          socket.emit('pauseA'); 
+      }
+  }, 1000);
+});
+
+socket.on('pauseA', function(){
+  var interval = setInterval(function() {
+      document.getElementById('timer_div').innerHTML = --seconds_left;
+
+      if (seconds_left <= 0)
+      {
+          document.getElementById('timer_div').innerHTML = 'You are ready'; //--------emit signal
+          clearInterval(interval);
+                    socket.emit('playerOnesTurn'); 
+
+      }
+  }, 1000);
+});
+
+socket.on('pauseB', function(){
+  var interval = setInterval(function() {
+      document.getElementById('timer_div').innerHTML = --seconds_left;
+
+      if (seconds_left <= 0)
+      {
+          document.getElementById('timer_div').innerHTML = 'You are ready'; //--------emit signal
+          clearInterval(interval);
+          socket.emit('playerTwosTurn'); 
+
+      }
+  }, 1000);
+});
