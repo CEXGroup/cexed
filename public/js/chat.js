@@ -29,6 +29,7 @@ socket.on('notifyUser', function(user){
   setTimeout(function(){ $('#notifyUser').text(''); }, 10000);
 });
  
+
 function setName(){
   var name = document.getElementById('username').value;
   $('#user').val(name);
