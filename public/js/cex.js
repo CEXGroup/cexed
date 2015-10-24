@@ -36,7 +36,7 @@ function changeScreen() {
 }
 
 $(document).keypress(function(e) {
-    if(e.which == 13) {
+    if(e.which == 13 && login) {
         changeScreen();
     }
 });
