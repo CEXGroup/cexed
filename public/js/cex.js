@@ -34,3 +34,9 @@ function changeScreen() {
     login = true;
   }
 }
+
+$(document).keypress(function(e) {
+    if(e.which == 13) {
+        changeScreen();
+    }
+});
