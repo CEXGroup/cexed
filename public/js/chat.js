@@ -1,4 +1,6 @@
 var socket = io(); 
+var login = true;
+
 function submitfunction(){
   var from = $('#user').val();
   var message = $('#m').val();
@@ -37,8 +39,26 @@ function setName(){
 }
  
 $(document).keypress(function(e) {
-    if(e.which == 13) {
-        setName();
+	console.log(login);
+    if(e.which == 13 && login) {
+		setName();
+	  if(login) {
+		$('#container').addClass('inactiveDiv');
+		$('#container').removeClass('activeDiv');
+
+		$('#chat_container').removeClass('inactiveDiv');
+		$('#chat_container').addClass('activeDiv');
+
+		login = false;
+	  } else {
+		$('#chat_container').removeClass('activeDiv');
+		$('#chat_container').addClass('inactiveDiv');
+
+		$('#container').removeClass('inactiveDiv');
+		$('#container').addClass('activeDiv');
+		login = true;
+	  }
+		return false;
     }
 });
  
