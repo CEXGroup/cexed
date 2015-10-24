@@ -185,7 +185,7 @@ html, body {
   width: 100%;
 }
 
-#textMessage {
+.textMessage {
   background-color: transparent;
   border: 0;
   font-family: 'Alegreya Sans SC', sans-serif;
