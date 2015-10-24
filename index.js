@@ -2,7 +2,6 @@ var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var path = require('path');
-var game = require('public/js/game.js');
 
 // Initialize appication with route / (that means root of the application)
 app.get('/', function(req, res){
@@ -19,7 +18,6 @@ app.get('/index.html', function(req, res){
 
 // Register events on socket connection
 io.on('connection', function(socket){
-  game.init(io, socket);
 	
   socket.on('chatMessage', function(from, msg){
     io.emit('chatMessage', from, msg);
@@ -30,6 +28,6 @@ io.on('connection', function(socket){
 });
 
 // Listen application request on port 3000
-http.listen(process.env.port, function(){
+http.listen(process.env.port || 3000, function(){
   console.log('listening on :3000');
 });
