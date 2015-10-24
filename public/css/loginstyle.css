@@ -161,6 +161,7 @@ html, body {
 }
 
 .information {
+  align-items: center;
   background-color: transparent;
   border-left: solid 1px #46494C;
   display: flex;
@@ -205,5 +206,5 @@ html, body {
 }
 
 #timer_div {
-  font-size: 30px;
+  font-size: 60px;
 }
