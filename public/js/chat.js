@@ -29,11 +29,17 @@ socket.on('notifyUser', function(user){
   setTimeout(function(){ $('#notifyUser').text(''); }, 10000);
 });
  
-$(document).ready(function(){
-  var name = makeid();
-  /* var name = document.getElementById('username').value; */
+function setName(){
+  var name = document.getElementById('username').value;
   $('#user').val(name);
   socket.emit('chatMessage', 'System', '<b>' + name + '</b> has joined the discussion');
+}
+ 
+$(document).ready(function(){
+  /* var name = makeid(); */
+  /* var name = document.getElementById('username').value; */
+  /* $('#user').val(name); */
+  /* socket.emit('chatMessage', 'System', '<b>' + name + '</b> has joined the discussion'); */
 });
  
 function makeid() {
