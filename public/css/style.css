@@ -6,6 +6,14 @@ html, body {
   padding: 0;
 }
 
+.activeDiv {
+  display: flex;
+}
+
+.inactiveDiv {
+  display: none;
+}
+
 .main {
   background-color: transparent;
   display: flex;
@@ -58,6 +66,10 @@ html, body {
   flex-grow: 1;
   flex-direction: column-reverse;
   margin: 10px 2% 20px 5%;
+}
+
+#form {
+  width: 100%;
 }
 
 #textMessage {

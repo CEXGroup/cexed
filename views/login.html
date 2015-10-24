@@ -8,9 +8,11 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.2.1/trianglify.min.js"></script>
     <script language="javascript" type="text/javascript" src="/public/js/cex.js"></script>
+		<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+			<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 </head>
 <body onload = "triainglesBitches()">
-  <div id = 'container'>
+  <div id = 'container' class = 'activeDiv'>
     <div class = 'main'>
       <div class = 'login'>
         <h1 id = 'lwf'> Lyrics With Friends </h1>
@@ -23,10 +25,36 @@
           </form>
         </div>
         <div class = 'advance'>
-          <a href="/index.html" class=button id='accepted'> Challenge Accepted </a>
+          <a href="/index.html" class=button id='accepted' onclick='changeScreen()'> Challenge Accepted </a>
         </div>
       </div>
     </div>
   </div>
+
+	<div id = 'chat_container' class = 'inactiveDiv'>
+		<div class = 'main'>
+			<div class = 'header'>
+					Challenge Accepted
+			</div>
+			<div class = 'holder'>
+				<div class = 'shit'>
+					<div class = 'chat'>
+								<form id="form" action="" onsubmit="return submitfunction();" >
+									<input type="hidden" id="user" value="" />
+									<input id="m" autocomplete="off" onkeyup="notifyTyping();" placeholder="Type your lyrics here..." />
+									<input type="submit" id="button" value="Send"/>
+								</form>
+					</div>
+					<div class = 'message'>
+							<ul id="messages"></ul>
+						<span id="notifyUser"></span>
+					</div>
+				</div>
+				<div class = 'information'>
+
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

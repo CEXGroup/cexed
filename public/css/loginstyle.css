@@ -6,6 +6,14 @@ html, body {
   position: relative;
 }
 
+.activeDiv {
+  display: flex;
+}
+
+.inactiveDiv {
+  display: none;
+}
+
 .main {
   align-items: center;
   display: flex;
@@ -95,4 +103,83 @@ html, body {
 *:-ms-input-placeholder {
     /* IE 10+ */
     color: #4D64BC;
+}
+
+
+
+/* stylesheet */
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.main {
+  background-color: transparent;
+  display: flex;
+  font-family: 'Alegreya Sans SC', sans-serif;
+  flex-direction: column;
+  height: 100%;
+  margin: 10px 10px 10px 10px;
+}
+
+.chat {
+  background-color: transparent;
+  border-top: solid 1px #4D64BC;
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-end;
+}
+
+.header {
+  border-bottom: solid 1px;
+  color: #46494C;
+  font-family: 'Alegreya Sans SC', sans-serif;
+  font-size: 50px;
+  margin: 0 0 0 10px;
+  padding: 0;
+}
+
+.holder {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: row;
+}
+
+.information {
+  background-color: transparent;
+  border-left: solid 1px #4D64BC;
+  display: flex;
+  justify-content: center;
+  margin: 5% 5% 5% 2%;
+  width: 30%;
+}
+
+.message {
+  background-color: transparent;
+  flex-grow: 5;
+}
+
+.shit {
+  background-color: transparent;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column-reverse;
+  margin: 10px 2% 20px 5%;
+}
+
+#form {
+  width: 100%;
+}
+
+#textMessage {
+  background-color: transparent;
+  border: 0;
+  font-family: 'Alegreya Sans SC', sans-serif;
+  font-size: 20px;
+  outline:0;
+  margin: 0 5% 0 5%;
+  text-align: right;
+  width: 100%;
 }
