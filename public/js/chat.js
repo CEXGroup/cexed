@@ -36,6 +36,13 @@ function setName(){
   socket.emit('chatMessage', 'System', '<b>' + name + '</b> has joined the discussion');
 }
  
+$(document).keypress(function(e) {
+    if(e.which == 13) {
+        setName();
+		changeScreen();
+    }
+});
+ 
 $(document).ready(function(){
   /* var name = makeid(); */
   /* var name = document.getElementById('username').value; */
