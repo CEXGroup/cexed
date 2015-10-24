@@ -3,10 +3,13 @@
  * Module dependencies.
  */
 
-var express = require('express'),
-  routes = require('./routes'),
-  socket = require('./routes/socket.js');
+var express = require('express');
+var routes = require('./routes');
+var socket = require('./routes/socket.js');
+var http = require('http');
 
+//var a = express();
+//var app = http.createServer(ex);
 var app = module.exports = express.createServer();
 
 // Hook Socket.io into Express
