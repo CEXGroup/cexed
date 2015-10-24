@@ -19,6 +19,9 @@ app.get('/index.html', function(req, res){
 
 // Register events on socket connection
 io.on('connection', function(socket){
+  socket.on('connectMessage', function(from, msg){
+	  io.emit('connectMessage', from, msg);
+  }
 
   socket.on('chatMessage', function(from, msg){
 	  if (prevFrom !== from){

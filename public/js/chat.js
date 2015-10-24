@@ -15,6 +15,13 @@ function notifyTyping() {
   var user = $('#user').val();
   socket.emit('notifyUser', user);
 }
+
+socket.on('connectMessage', function(from, msg){
+  var me = $('#user').val();
+  var color = (from == me) ? 'green' : '#009afd';
+  var from = (from == me) ? 'Me' : from;
+  $('#messages').append('<li><b style="color:' + color + '">' + from + '</b>: ' + msg + '</li>');
+});
  
 socket.on('chatMessage', function(from, msg){
   var me = $('#user').val();
@@ -35,7 +42,7 @@ socket.on('notifyUser', function(user){
 function setName(){
   var name = document.getElementById('username').value;
   $('#user').val(name);
-  socket.emit('chatMessage', 'System', '<b>' + name + '</b> has joined the discussion');
+  socket.emit('connectMessage', 'System', '<b>' + name + '</b> has joined the discussion');//needs to be different from chat message
 }
  
 $(document).keypress(function(e) {
