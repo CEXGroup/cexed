@@ -156,6 +156,7 @@ html, body {
   display: flex;
   flex-grow: 1;
   flex-direction: row;
+  height: 80%;
   width: 75%;
 }
 
@@ -171,6 +172,7 @@ html, body {
 .message {
   background-color: transparent;
   flex-grow: 5;
+  overflow: scroll;
 }
 
 .shit {
@@ -194,4 +196,9 @@ html, body {
   margin: 0 5% 0 5%;
   text-align: right;
   width: 100%;
+}
+
+#messages {
+  font-size: 20px;
+  list-style-type:none;
 }
