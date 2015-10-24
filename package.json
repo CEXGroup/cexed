@@ -1,13 +1,14 @@
 {
-    "name": "angular-socket-io-im",
-    "version": "0.0.1",
-    "private": true,
-    "scripts": {
-        "start": "node app.js"
-    }, 
-    "dependencies": {
-      "express": "2.5.8"
-    , "jade": "~1.11.0"
-    , "socket.io": "^1.3.7"
+  "name": "angular-socket-io-im",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "angular": "^1.4.7",
+    "express": "2.5.8",
+    "jade": "~1.11.0",
+    "socket.io": "^1.3.7"
   }
 }
