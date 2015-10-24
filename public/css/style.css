@@ -54,7 +54,6 @@ html, body {
 
 .shit {
   background-color: transparent;
-  /*border-bottom: solid 1px;*/
   display: flex;
   flex-grow: 1;
   flex-direction: column-reverse;
