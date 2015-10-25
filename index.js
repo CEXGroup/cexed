@@ -9,7 +9,7 @@ var prevFrom = '';
 var inPause = false;
 
 var players = [];
-var score = [0,0];
+var score = [];
 
 // Initialize appication with route / (that means root of the application)
 app.get('/', function(req, res){
@@ -28,7 +28,7 @@ app.get('/index.html', function(req, res){
 io.on('connection', function(socket){
   socket.on('connectMessage', function(from, msg){
   players.push(from);
-  scores.push(0);
+  score.push(0);
       io.emit("4scoreandsomeyearsago", score);
 	  io.emit('connectMessage', from, msg);
   });
