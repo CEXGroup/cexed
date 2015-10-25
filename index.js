@@ -27,8 +27,8 @@ app.get('/index.html', function(req, res){
 // Register events on socket connection
 io.on('connection', function(socket){
   socket.on('connectMessage', function(from, msg){
-	  console.log('hello');
-	  console.log(testMod.getX());
+  players.push(from);
+  scores.push(0);
       io.emit("4scoreandsomeyearsago", score);
 	  io.emit('connectMessage', from, msg);
   });
