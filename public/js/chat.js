@@ -108,7 +108,7 @@ socket.on('playerTurn', function(){
       {
           seconds_left = current_sec;
           clearInterval(interval);
-		  document.getElementById('timer_div').innerHTML = 'Game Over!';
+		  document.getElementById('timer_div').innerHTML = 'Goal Goal Goal!';
 		  socket.emit('GameOver', true);
       }
   }, 1000);

@@ -7,6 +7,7 @@ var testMod = require('./public/js/testModule.js');
 
 var prevFrom = '';
 var inPause = false;
+var gameOver = false;
 
 var players = [];
 var score = [0,0];
@@ -27,13 +28,14 @@ app.get('/index.html', function(req, res){
 // Register events on socket connection
 io.on('connection', function(socket){
   socket.on('connectMessage', function(from, msg, user){
-  players.push(user);
+      players.push(user);
       io.emit("4scoreandsomeyearsago", score);
 	  io.emit('connectMessage', from, msg);
   });
 
   socket.on('GameOver', function(isInPause){
-	  inPause = isInPause;
+	  prevFrom = '';
+	  isInPause = false;
 	  console.log(players.length);
 	  for(i = 0; i < players.length; i++){
 		  console.log(players[i] + ' ' + prevFrom);
