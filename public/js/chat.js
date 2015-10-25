@@ -88,12 +88,13 @@ function makeid() {
 
 var current_sec  = 20;
 var seconds_left = 20;
-var min_sec = 10
+var min_sec = 10;
+var interval;
 
 socket.on('playerTurn', function(){
 	clearInterval(interval);
 	seconds_left = current_sec;
-  var interval = setInterval(function() {
+    interval = setInterval(function() {
       document.getElementById('timer_div').innerHTML = 'Player time left: '+ --seconds_left;
 
       if (seconds_left <= 0)
@@ -110,7 +111,7 @@ socket.on('playerTurn', function(){
 socket.on('pause', function(){
 	clearInterval(interval);
 	seconds_left = current_sec;
-  var interval = setInterval(function() {
+    interval = setInterval(function() {
       document.getElementById('timer_div').innerHTML = 'Break time left:' + --seconds_left;
 
       if (seconds_left <= 0)
