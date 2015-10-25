@@ -36,6 +36,7 @@ io.on('connection', function(socket){
   socket.on('GameOver', function(isInPause){
 	  inPause = isInPause;
 	  for(i = 0; i < players.length; i++){
+		  console.log(players[i] + ' ' + prevFrom);
 		  if(players[i] == prevFrom){
 			  scores[i]++;
 			  io.emit("4scoreandsomeyearsago", score);
