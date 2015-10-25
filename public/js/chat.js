@@ -108,14 +108,11 @@ socket.on('playerTurn', function(){
       {
           seconds_left = current_sec;
           clearInterval(interval);
-		  document.getElementById('timer_div').innerHTML = 'Goal Goal Goal!';
+		  document.getElementById('timer_div').innerHTML = 'Run those score downs!';
 		  socket.emit('GameOver', true);
       }
   }, 1000);
 });
-
-
-
 
 
 socket.on('4scoreandsomeyearsago',function(score){

@@ -31,8 +31,7 @@ io.on('connection', function(socket){
   socket.on('connectMessage', function(from, msg, user){
     players.push(user);
     io.emit("4scoreandsomeyearsago", score);
-    var rawr = randomTopic.getTopic();
-    io.emit('randotopico', rawr);
+    io.emit('randotopico', 'Topic will be chosen when game starts!');
 	io.emit('connectMessage', from, msg);
     
   });
