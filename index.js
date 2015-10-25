@@ -29,6 +29,7 @@ function myFunction(msg) {
   xmlhttp.open("GET", url, false);
   xmlhttp.send();
   var ret = JSON.parse(xmlhttp.responseText);
+  console.log(ret);
   console.log('matches ' + ret.message.header.available);
   return ret.message.header.available;
 }
