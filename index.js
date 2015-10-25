@@ -37,7 +37,7 @@ io.on('connection', function(socket){
   socket.on('chatMessage', function(from, msg){
 	  if (prevFrom !== from && !inPause){
 		prevFrom = from;
-		io.emit('playerTurn');
+		io.emit('pause');
 		io.emit('chatMessage', from, msg);
 	  }
   });
