@@ -13,6 +13,8 @@ function analyzeLyrics(lyrics){
 	
 }
 
+
+
 socket.on('getTurn', function(){
 	player = !player;
 	socket.emit('theTurn', player);

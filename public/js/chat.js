@@ -90,62 +90,33 @@ var current_sec  =20
 var seconds_left = 20;
 var min_sec = 10
 
-socket.on('playerOnesTurn', function(){
+socket.on('playerTurn', function(){
   var interval = setInterval(function() {
-      document.getElementById('timer_div').innerHTML = --seconds_left;
+      document.getElementById('timer_div').innerHTML = 'Player time left: '+ --seconds_left;
 
       if (seconds_left <= 0)
       {
           seconds_left = current_sec;
-          socket.emit('pauseB'); 
           clearInterval(interval);
+		  socket.emit('PauseState', true);
       }
   }, 1000);
 });
 
-socket.on('playerTwosTurn', function(){
+
+
+socket.on('pause', function(){
   var interval = setInterval(function() {
-      document.getElementById('timer_div').innerHTML = --seconds_left;
+      document.getElementById('timer_div').innerHTML = 'Break time left:' + --seconds_left;
 
       if (seconds_left <= 0)
       {
-          if(current_sec >=min_sec)
-              current_sec -= 2;
           seconds_left = current_sec;
-
-          document.getElementById('timer_div').innerHTML = 'You are ready'; 
-          clearInterval(interval);
-          socket.emit('pauseA'); 
-      }
-  }, 1000);
-});
-
-socket.on('pauseA', function(){
-  var interval = setInterval(function() {
-      document.getElementById('timer_div').innerHTML = --seconds_left;
-
-      if (seconds_left <= 0)
-      {
-           seconds_left = current_sec;
           document.getElementById('timer_div').innerHTML = 'You are ready';
           clearInterval(interval);
-                    socket.emit('playerOnesTurn'); 
-
+		  socket.emit('PauseState', false);
       }
   }, 1000);
 });
 
-socket.on('pauseB', function(){
-  var interval = setInterval(function() {
-      document.getElementById('timer_div').innerHTML = --seconds_left;
 
-      if (seconds_left <= 0)
-      {
-          seconds_left = current_sec;
-          document.getElementById('timer_div').innerHTML = 'You are ready'; 
-          clearInterval(interval);
-          socket.emit('playerTwosTurn'); 
-
-      }
-  }, 1000);
-});

@@ -3,6 +3,7 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var path = require('path');
 var prevFrom = '';
+var inPause = false;
 
 // Initialize appication with route / (that means root of the application)
 app.get('/', function(req, res){
@@ -23,8 +24,12 @@ io.on('connection', function(socket){
 	  io.emit('connectMessage', from, msg);
   });
 
+  socket.on('PauseState', function(isInPause){
+	  inPause = isInPause;
+  });
+  
   socket.on('chatMessage', function(from, msg){
-	  if (prevFrom !== from){
+	  if (prevFrom !== from && !inPause){
 		prevFrom = from;
 		io.emit('playerOnesTurn');
 		io.emit('chatMessage', from, msg);
