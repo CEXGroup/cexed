@@ -97,6 +97,7 @@ io.on('connection', function(socket){
 	  if (prevFrom !== from && !inPause){
 		if (myFunction(msg) < 50){
 			endGame();
+			io.emit('StopThePlay');
 		}
 		prevFrom = from;
 		inPause = true;
