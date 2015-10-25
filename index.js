@@ -35,7 +35,7 @@ io.on('connection', function(socket){
 
   socket.on('SomeoneGetsAPoint', function(from){
     for(int i = 0; i < players.length; i++){
-      if(players[i] === from){
+      if(players[i] == from){
           scores[i]++;
           if(i == 0){
             document.getElementById('Ascore').innerHTML = scores[i];
