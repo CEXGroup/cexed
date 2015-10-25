@@ -101,12 +101,11 @@ io.on('connection', function(socket){
 		if (matches > 200 || matches === 0){
 			endGame();
 			io.emit('StopThePlay');
-		} else {
-			prevFrom = from;
-			inPause = true;
-			io.emit('pause');
-			io.emit('chatMessage', from, msg);
 		}
+		prevFrom = from;
+		inPause = true;
+		io.emit('pause');
+		io.emit('chatMessage', from, msg);
 	  }
 	  if (msg === '%reset') {
 		  score = [0,0];
