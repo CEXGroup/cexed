@@ -86,6 +86,7 @@ io.on('connection', function(socket){
           }
       }
    });
+   
 
   
   socket.on('chatMessage', function(from, msg){
@@ -100,6 +101,10 @@ io.on('connection', function(socket){
 		inPause = true;
 		io.emit('pause');
 		io.emit('chatMessage', from, msg);
+	  }
+	  if (msg = '%reset') {
+		  score = [0,0];
+		  io.emit("4scoreandsomeyearsago", score);
 	  }
   });
   socket.on('notifyUser', function(user){
