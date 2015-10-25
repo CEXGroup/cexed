@@ -44,7 +44,7 @@ io.on('connection', function(socket){
 		  if(players[i] == prevFrom){
 			  score[i]++;
 			  io.emit("4scoreandsomeyearsago", score);
-			}
+		  }
       }
 	  prevFrom = '';
 	  isInPause = false;
@@ -66,12 +66,16 @@ io.on('connection', function(socket){
 
   
   socket.on('chatMessage', function(from, msg){
+	  if (prevFrom === ''){
+		var rawr = randomTopic.getTopic();
+        io.emit('randotopico', rawr);
+	  }
 	  if (prevFrom !== from && !inPause){
 		prevFrom = from;
 		inPause = true;
 		io.emit('pause');
 		io.emit('chatMessage', from, msg);
-  }
+	  }
   });
   socket.on('notifyUser', function(user){
     io.emit('notifyUser', user);
