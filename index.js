@@ -4,6 +4,8 @@ var io = require('socket.io')(http);
 var path = require('path');
 var watson = require('watson-developer-cloud');
 var testMod = require('./public/js/testModule.js');
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+
 
 var prevFrom = '';
 var inPause = false;
@@ -12,6 +14,25 @@ var randomTopic = require('./public/js/randomTopic.js');
 
 var players = [];
 var score = [0,0];
+
+var xmlhttp = new XMLHttpRequest();
+          
+
+function myFunction(msg) {
+  var res = msg.split(" ");
+  var url = "http://api.musixmatch.com/ws/1.1/track.search?apikey=ea6c206263d8c53630bdafdfe5f36afe&q_track=";
+  for(i = 0; i < res.length - 1; i++ ){
+    url += res[i] +"%20";
+  }
+  url += res[res.length - 1]+"&f_has_lyrics=1";
+
+  xmlhttp.open("GET", url, true);
+  xmlhttp.send();
+  var ret = xmlhttp.responseText;
+  console.log(url);
+  console.log(ret);
+
+}
 
 // Initialize appication with route / (that means root of the application)
 app.get('/', function(req, res){
@@ -72,13 +93,18 @@ io.on('connection', function(socket){
 	  if (prevFrom !== from && !inPause){
 		prevFrom = from;
 		inPause = true;
-		io.emit('pause');
+    myFunction(msg);
+    io.emit('pause');
 		io.emit('chatMessage', from, msg);
 	  }
   });
   socket.on('notifyUser', function(user){
     io.emit('notifyUser', user);
   });
+
+
+
+
 });
 
 // Listen application request on port 3000
