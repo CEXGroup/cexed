@@ -4,6 +4,7 @@ var io = require('socket.io')(http);
 var path = require('path');
 var prevFrom = '';
 var inPause = false;
+var randomTopic = require('./public/js/randomTopic.js');
 
 // Initialize appication with route / (that means root of the application)
 app.get('/', function(req, res){
@@ -21,6 +22,7 @@ app.get('/index.html', function(req, res){
 // Register events on socket connection
 io.on('connection', function(socket){
   socket.on('connectMessage', function(from, msg){
+    console.log(randomTopic.getTopic());
 	  io.emit('connectMessage', from, msg);
   });
 
@@ -49,3 +51,4 @@ io.on('connection', function(socket){
 http.listen(process.env.port || 3000, function(){
   console.log('listening on :3000');
 });
+
