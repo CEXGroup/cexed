@@ -104,7 +104,7 @@ socket.on('playerTurn', function(){
 });
 
 socket.on('4scoreandsomeyearsago',function(score){
-        document.getElementById('score').innerHTML = score;
+        // document.getElementById('score').innerHTML = score;
 
 });
 
