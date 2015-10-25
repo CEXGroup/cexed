@@ -29,8 +29,9 @@ io.on('connection', function(socket){
 	  io.emit('pause');
   });
   
-    socket.on('PauseExit', function(isInPause){
+  socket.on('PauseExit', function(isInPause){
 	  inPause = isInPause;
+	  io.emit('playerTurn');
   });
   
   socket.on('chatMessage', function(from, msg){
