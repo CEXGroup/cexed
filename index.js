@@ -38,9 +38,9 @@ io.on('connection', function(socket){
       if(players[i] == from){
           scores[i]++;
           if(i == 0){
-            document.getElementById('Ascore').innerHTML = scores[i];
+            // document.getElementById('Ascore').innerHTML = scores[i];
           }else{
-            document.getElementById('Bscore').innerHTML = scores[i];
+            // document.getElementById('Bscore').innerHTML = scores[i];
 
           }
       }
