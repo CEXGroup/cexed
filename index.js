@@ -95,14 +95,15 @@ io.on('connection', function(socket){
         io.emit('randotopico', rawr);
 	  }
 	  if (prevFrom !== from && !inPause){
-		if (myFunction(msg) < 50)
+		if (myFunction(msg) < 50){
 			endGame();
+		}
 		prevFrom = from;
 		inPause = true;
 		io.emit('pause');
 		io.emit('chatMessage', from, msg);
 	  }
-	  if (msg = '%reset') {
+	  if (msg === '%reset') {
 		  score = [0,0];
 		  io.emit("4scoreandsomeyearsago", score);
 	  }
