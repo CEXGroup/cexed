@@ -103,10 +103,10 @@ socket.on('playerTurn', function(){
   }, 1000);
 });
 
-socket.on('4scoreandsomeyearsago',function(score){
-        // document.getElementById('score').innerHTML = score;
+// socket.on('4scoreandsomeyearsago',function(score){
+//         // document.getElementById('score').innerHTML = score;
 
-});
+// });
 
 
 socket.on('pause', function(){
