@@ -8,6 +8,7 @@ var testMod = require('./public/js/testModule.js');
 var prevFrom = '';
 var inPause = false;
 var gameOver = false;
+var randomTopic = require('./public/js/randomTopic.js');
 
 var players = [];
 var score = [0,0];
@@ -28,14 +29,15 @@ app.get('/index.html', function(req, res){
 // Register events on socket connection
 io.on('connection', function(socket){
   socket.on('connectMessage', function(from, msg, user){
-      players.push(user);
-      io.emit("4scoreandsomeyearsago", score);
-	  io.emit('connectMessage', from, msg);
+    players.push(user);
+    io.emit("4scoreandsomeyearsago", score);
+    var rawr = randomTopic.getTopic();
+    io.emit('randotopico', rawr);
+	io.emit('connectMessage', from, msg);
+    
   });
 
   socket.on('GameOver', function(isInPause){
-	  prevFrom = '';
-	  isInPause = false;
 	  console.log(players.length);
 	  for(i = 0; i < players.length; i++){
 		  console.log(players[i] + ' ' + prevFrom);
@@ -44,6 +46,8 @@ io.on('connection', function(socket){
 			  io.emit("4scoreandsomeyearsago", score);
 			}
       }
+	  prevFrom = '';
+	  isInPause = false;
   });
   
     socket.on('PauseExit', function(isInPause){
@@ -67,7 +71,7 @@ io.on('connection', function(socket){
 		inPause = true;
 		io.emit('pause');
 		io.emit('chatMessage', from, msg);
-	  }
+  }
   });
   socket.on('notifyUser', function(user){
     io.emit('notifyUser', user);
@@ -78,3 +82,4 @@ io.on('connection', function(socket){
 http.listen(process.env.port || 3000, function(){
   console.log('listening on :3000');
 });
+
