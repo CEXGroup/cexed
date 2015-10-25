@@ -35,6 +35,13 @@ io.on('connection', function(socket){
 
   socket.on('GameOver', function(isInPause){
 	  inPause = isInPause;
+	  for(i = 0; i < players.length; i++){
+		  if(players[i] == from){
+			  scores[i]++;
+			  
+				io.emit("4scoreandsomeyearsago", score);
+			  }
+      }
   });
   
     socket.on('PauseExit', function(isInPause){
@@ -50,6 +57,7 @@ io.on('connection', function(socket){
           }
       }
    });
+
   
   socket.on('chatMessage', function(from, msg){
 	  if (prevFrom !== from && !inPause){
