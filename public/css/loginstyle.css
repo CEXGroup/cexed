@@ -1,5 +1,5 @@
 html, body {
- /* background-color: #F5ECB7;*/
+  /*background-color: #F5ECB7;*/
   height: 100%;
   margin: 0;
   padding: 0;
@@ -168,13 +168,14 @@ html, body {
   justify-content: top;
   margin: 5% 5% 5% 2%;
   width: 30%;
-  }
+
+}
 
 .message {
   background-color: transparent;
   flex-grow: 5;
   overflow: scroll;
-
+}
 
 .shit {
   background-color: transparent;
@@ -182,7 +183,7 @@ html, body {
   flex-grow: 1;
   flex-direction: column-reverse;
   margin: 1px 2% 1px 2%;
-}
+ }
 
 #form {
   width: 100%;
