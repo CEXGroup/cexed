@@ -1,5 +1,5 @@
 
-var topics = ["The 80's", "Love", "Country", "Parties", "Elvis Presley","Booty","Booty", "Top Hits", "Taylor Swift", "The Beatles", "Rap","TV Shows", "Children's Songs", "Movies", "Death"];
+var topics = ["The 80's", "Country", "Elvis Presley", "Top Hits", "Taylor Swift", "The Beatles", "Rap"];
 
 exports.getTopic = function(){
 		//console.log('imherer');

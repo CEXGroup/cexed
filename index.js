@@ -109,6 +109,7 @@ io.on('connection', function(socket){
 	  }
 	  if (msg === '%reset') {
 		  score = [0,0];
+		  players = [];
 		  io.emit("4scoreandsomeyearsago", score);
 	  }
   });
