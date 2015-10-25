@@ -2,6 +2,9 @@ var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var path = require('path');
+var watson = require('watson-developer-cloud');
+var testMod = require('./public/js/testModule.js');
+
 var prevFrom = '';
 var inPause = false;
 
@@ -24,18 +27,19 @@ app.get('/index.html', function(req, res){
 // Register events on socket connection
 io.on('connection', function(socket){
   socket.on('connectMessage', function(from, msg){
-    io.emit("4scoreandsomeyearsago", score);
+	  console.log('hello');
+	  console.log(testMod.getX());
+      io.emit("4scoreandsomeyearsago", score);
 	  io.emit('connectMessage', from, msg);
-
   });
 
-  socket.on('PauseEnter', function(isInPause){
+  socket.on('GameOver', function(isInPause){
 	  inPause = isInPause;
-	  io.emit('pause');
   });
   
     socket.on('PauseExit', function(isInPause){
 	  inPause = isInPause;
+	  io.emit('playerTurn');
   });
 
   socket.on('SomeoneGetsAPoint', function(from){
@@ -50,6 +54,7 @@ io.on('connection', function(socket){
   socket.on('chatMessage', function(from, msg){
 	  if (prevFrom !== from && !inPause){
 		prevFrom = from;
+		inPause = true;
 		io.emit('pause');
 		io.emit('chatMessage', from, msg);
 	  }

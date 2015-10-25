@@ -87,19 +87,29 @@ function makeid() {
   return text;
 }
 
-var current_sec  =20
+var current_sec  = 20;
 var seconds_left = 20;
-var min_sec = 10
+var min_sec = 10;
+var interval;
+
+function decayTime(currentTime){
+	currentTime -= 2;
+	return Math.max(currentTime, min_sec);
+}
 
 socket.on('playerTurn', function(){
-  var interval = setInterval(function() {
+	 	clearInterval(interval);
+	current_sec = decayTime(current_sec);
+ 	seconds_left = current_sec;
+   interval = setInterval(function() {
       document.getElementById('timer_div').innerHTML = 'Player time left: '+ --seconds_left;
 
       if (seconds_left <= 0)
       {
           seconds_left = current_sec;
           clearInterval(interval);
-		  socket.emit('PauseEnter', true);
+		  document.getElementById('timer_div').innerHTML = 'Game Over!';
+		  socket.emit('GameOver', true);
       }
   }, 1000);
 });
@@ -113,7 +123,9 @@ socket.on('4scoreandsomeyearsago',function(score){
 
 
 socket.on('pause', function(){
-  var interval = setInterval(function() {
+	clearInterval(interval);
+	seconds_left = 5;
+   interval = setInterval(function() {
       document.getElementById('timer_div').innerHTML = 'Break time left:' + --seconds_left;
 
       if (seconds_left <= 0)
