@@ -113,7 +113,8 @@ socket.on('playerTurn', function(){
           seconds_left = current_sec;
           clearInterval(interval);
 		      document.getElementById('timer_div').innerHTML = 'Run those scoredowns ';
-          socket.emit('SomeoneGetsAPoint', $('#user').val());
+          // var from =  $('#user').val();
+          // socket.emit('SomeoneGetsAPoint',from);
       }
   }, 1000);
 });
