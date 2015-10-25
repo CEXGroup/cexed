@@ -123,4 +123,6 @@ socket.on('pause', function(){
   }, 1000);
 });
 
-
+socket.on('randotopico', function(rawr){
+ document.getElementById('topic').innerHTML = rawr;
+  });

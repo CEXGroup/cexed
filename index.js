@@ -24,6 +24,7 @@ io.on('connection', function(socket){
   socket.on('connectMessage', function(from, msg){
     console.log(randomTopic.getTopic());
 	  io.emit('connectMessage', from, msg);
+    io.emit('randotopico', rawr);
   });
 
   socket.on('PauseEnter', function(isInPause){
@@ -51,7 +52,7 @@ io.on('connection', function(socket){
 		prevFrom = from;
 		io.emit('playerTurn');
 		io.emit('chatMessage', from, msg);
-	  }
+  }
   });
   socket.on('notifyUser', function(user){
     io.emit('notifyUser', user);
