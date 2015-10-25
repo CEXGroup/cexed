@@ -28,10 +28,22 @@ function myFunction(msg) {
 
   xmlhttp.open("GET", url, false);
   xmlhttp.send();
-  var ret = xmlhttp.responseText;
-  console.log(url);
-  console.log(ret);
+  var ret = JSON.parse(xmlhttp.responseText);
+  console.log(ret.message.header.available);
+  return ret.message.header.available;
+}
 
+function endGame() {
+	  console.log(players.length);
+	  for(i = 0; i < players.length; i++){
+		  console.log(players[i] + ' ' + prevFrom);
+		  if(players[i] == prevFrom){
+			  score[i]++;
+			  io.emit("4scoreandsomeyearsago", score);
+		  }
+      }
+	  prevFrom = '';
+	  isInPause = false;
 }
 
 // Initialize appication with route / (that means root of the application)
@@ -58,16 +70,7 @@ io.on('connection', function(socket){
   });
 
   socket.on('GameOver', function(isInPause){
-	  console.log(players.length);
-	  for(i = 0; i < players.length; i++){
-		  console.log(players[i] + ' ' + prevFrom);
-		  if(players[i] == prevFrom){
-			  score[i]++;
-			  io.emit("4scoreandsomeyearsago", score);
-		  }
-      }
-	  prevFrom = '';
-	  isInPause = false;
+	endGame();
   });
   
     socket.on('PauseExit', function(isInPause){
@@ -91,10 +94,11 @@ io.on('connection', function(socket){
         io.emit('randotopico', rawr);
 	  }
 	  if (prevFrom !== from && !inPause){
+		if (myFunction(msg) < 50)
+			endGame();
 		prevFrom = from;
 		inPause = true;
-    myFunction(msg);
-    io.emit('pause');
+		io.emit('pause');
 		io.emit('chatMessage', from, msg);
 	  }
   });
