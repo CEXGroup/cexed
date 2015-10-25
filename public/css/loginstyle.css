@@ -1,5 +1,5 @@
 html, body {
-  /*background-color: #F5ECB7;*/
+ /* background-color: #F5ECB7;*/
   height: 100%;
   margin: 0;
   padding: 0;
@@ -174,7 +174,7 @@ html, body {
   background-color: transparent;
   flex-grow: 5;
   overflow: scroll;
-}
+
 
 .shit {
   background-color: transparent;
