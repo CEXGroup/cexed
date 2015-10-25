@@ -24,9 +24,8 @@ io.on('connection', function(socket){
 	  io.emit('connectMessage', from, msg);
   });
 
-  socket.on('PauseEnter', function(isInPause){
+  socket.on('GameOver', function(isInPause){
 	  inPause = isInPause;
-	  io.emit('pause');
   });
   
   socket.on('PauseExit', function(isInPause){
@@ -37,6 +36,7 @@ io.on('connection', function(socket){
   socket.on('chatMessage', function(from, msg){
 	  if (prevFrom !== from && !inPause){
 		prevFrom = from;
+		inPause = true;
 		io.emit('pause');
 		io.emit('chatMessage', from, msg);
 	  }

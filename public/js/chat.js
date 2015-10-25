@@ -91,8 +91,14 @@ var seconds_left = 20;
 var min_sec = 10;
 var interval;
 
+function decayTime(currentTime){
+	currentTime -= 2;
+	return Math.max(currentTime, min_sec);
+}
+
 socket.on('playerTurn', function(){
 	clearInterval(interval);
+	current_sec = decayTime(current_sec);
 	seconds_left = current_sec;
     interval = setInterval(function() {
       document.getElementById('timer_div').innerHTML = 'Player time left: '+ --seconds_left;
@@ -101,7 +107,8 @@ socket.on('playerTurn', function(){
       {
           seconds_left = current_sec;
           clearInterval(interval);
-		  socket.emit('PauseEnter', true);
+		  document.getElementById('timer_div').innerHTML = 'Game Over!';
+		  socket.emit('GameOver', true);
       }
   }, 1000);
 });
@@ -110,7 +117,7 @@ socket.on('playerTurn', function(){
 
 socket.on('pause', function(){
 	clearInterval(interval);
-	seconds_left = current_sec;
+	seconds_left = 5;
     interval = setInterval(function() {
       document.getElementById('timer_div').innerHTML = 'Break time left:' + --seconds_left;
 
