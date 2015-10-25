@@ -34,6 +34,17 @@ io.on('connection', function(socket){
     socket.on('PauseExit', function(isInPause){
 	  inPause = isInPause;
   });
+
+  socket.on('SomeoneGetsAPoint', function(from){
+    for(i = 0; i < players.length; i++){
+      if(players[i] == from){
+          scores[i]++;
+            io.emit("4scoreandsomeyearsago", function("A =" + scores[0] + "B = " +score[1]));
+            // document.getElementById('score').innerHTML = "A =" + scores[0] + "B = " +score[1];
+          }
+      }
+    }
+  });
   
   socket.on('chatMessage', function(from, msg){
 	  if (prevFrom !== from && !inPause){
