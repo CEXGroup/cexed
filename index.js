@@ -29,7 +29,9 @@ app.get('/index.html', function(req, res){
 io.on('connection', function(socket){
   socket.on('connectMessage', function(from, msg, user){
   players.push(user);
-      io.emit("4scoreandsomeyearsago", score);
+    io.emit("4scoreandsomeyearsago", score);
+    var rawr = randomTopic.getTopic();
+    io.emit('randotopico', rawr);
 	  io.emit('connectMessage', from, msg);
     
   });

@@ -163,13 +163,12 @@ html, body {
 .information {
   align-items: center;
   background-color: transparent;
-  border-left: solid 1px #46494C;
   display: flex;
   flex-direction: column;
   justify-content: top;
   margin: 5% 5% 5% 2%;
   width: 30%;
-}
+  }
 
 .message {
   background-color: transparent;
@@ -182,7 +181,7 @@ html, body {
   display: flex;
   flex-grow: 1;
   flex-direction: column-reverse;
-  margin: 10px 2% 20px 5%;
+  margin: 1px 2% 1px 2%;
 }
 
 #form {
@@ -206,9 +205,20 @@ html, body {
 }
 
 #timer_div {
-  font-size: 60px;
+  font-size: 40px;
+  text-align: center;
 }
 
-#booty {
-  font-size: 100px;
+#topic {
+  font-size: 40px;
+  border-left: solid 10px transparent;
+  text-align: center;
+}
+
+#score{
+  font-size: 25px;
+  border-top: solid 25px transparent;
+  border-bottom: solid 25px transparent;
+  text-align: center;
+ 
 }
