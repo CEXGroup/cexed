@@ -168,7 +168,8 @@ html, body {
   justify-content: top;
   margin: 5% 5% 5% 2%;
   width: 30%;
-  }
+
+}
 
 .message {
   background-color: transparent;
@@ -182,7 +183,7 @@ html, body {
   flex-grow: 1;
   flex-direction: column-reverse;
   margin: 1px 2% 1px 2%;
-}
+ }
 
 #form {
   width: 100%;
