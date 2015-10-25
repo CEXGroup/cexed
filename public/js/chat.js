@@ -1,5 +1,7 @@
 var socket = io(); 
 var login = true;
+var name ="";
+var score = 0;
 
 function submitfunction(){
   var from = $('#user').val();
@@ -23,6 +25,8 @@ socket.on('connectMessage', function(from, msg){
   $('#messages').append('<li><b style="color:' + color + '">' + from + '</b>: ' + msg + '</li>');
 });
  
+socket.on('pointAwarded', function(from){
+
 socket.on('chatMessage', function(from, msg){
   var me = $('#user').val();
   var color = (from == me) ? 'green' : '#009afd';
@@ -40,7 +44,7 @@ socket.on('notifyUser', function(user){
  
 
 function setName(){
-  var name = document.getElementById('username').value;
+  name = document.getElementById('username').value;
   $('#user').val(name);
   socket.emit('connectMessage', 'System', '<b>' + name + '</b> has joined the discussion');//needs to be different from chat message
 }
@@ -91,6 +95,7 @@ var seconds_left = 20;
 var min_sec = 10;
 var interval;
 
+
 function decayTime(currentTime){
 	currentTime -= 2;
 	return Math.max(currentTime, min_sec);
@@ -107,17 +112,16 @@ socket.on('playerTurn', function(){
       {
           seconds_left = current_sec;
           clearInterval(interval);
-		  document.getElementById('timer_div').innerHTML = 'Game Over!';
-		  socket.emit('GameOver', true);
+		      document.getElementById('timer_div').innerHTML = 'Run those scoredowns ';
+          socket.emit('SomeoneGetsAPoint', $('#user').val());
       }
   }, 1000);
 });
 
 
-
 socket.on('pause', function(){
 	clearInterval(interval);
-	seconds_left = 5;
+	seconds_left = 4;
     interval = setInterval(function() {
       document.getElementById('timer_div').innerHTML = 'Break time left:' + --seconds_left;
 
@@ -130,5 +134,7 @@ socket.on('pause', function(){
       }
   }, 1000);
 });
+
+
 
 

@@ -5,6 +5,14 @@ var path = require('path');
 var prevFrom = '';
 var inPause = false;
 
+var players = [];
+var scores = [];
+
+
+
+var ap = 0;
+var bp = 0;
+
 // Initialize appication with route / (that means root of the application)
 app.get('/', function(req, res){
   var express=require('express');
@@ -21,13 +29,23 @@ app.get('/index.html', function(req, res){
 // Register events on socket connection
 io.on('connection', function(socket){
   socket.on('connectMessage', function(from, msg){
+  players.push(from);
+  scores.push(0);
 	  io.emit('connectMessage', from, msg);
   });
 
   socket.on('GameOver', function(isInPause){
 	  inPause = isInPause;
   });
-  
+
+  socket.on('SomeoneGetsAPoint', function(from){
+    for(int i = 0; i < players.length; i++){
+      if(players[i] === from){
+          scores[i]++;
+      }
+    }
+  });
+
   socket.on('PauseExit', function(isInPause){
 	  inPause = isInPause;
 	  io.emit('playerTurn');
