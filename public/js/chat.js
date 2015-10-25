@@ -40,6 +40,7 @@ socket.on('notifyUser', function(user){
 });
  
 
+ 
 function setName(){
   var name = document.getElementById('username').value;
   $('#user').val(name);
@@ -96,6 +97,11 @@ function decayTime(currentTime){
 	currentTime -= 2;
 	return Math.max(currentTime, min_sec);
 }
+
+socket.on('StopThePlay', function(){
+	clearInterval(interval);
+	document.getElementById('timer_div').innerHTML = 'Run those score downs!';
+});
 
 socket.on('playerTurn', function(){
 	 	clearInterval(interval);
