@@ -8,15 +8,8 @@ var testMod = require('./public/js/testModule.js');
 var prevFrom = '';
 var inPause = false;
 
-var speech_to_text = watson.speech_to_text({
-	username: '190f202e-aaa7-4849-975d-70e3a14b51b9',
-	password: 'clyAOaAmyl3h',
-	version: 'v1'
-});
-
-function processAudio(){
-	
-}
+var players = [];
+var score = [0,0];
 
 // Initialize appication with route / (that means root of the application)
 app.get('/', function(req, res){
@@ -36,7 +29,7 @@ io.on('connection', function(socket){
   socket.on('connectMessage', function(from, msg){
 	  console.log('hello');
 	  console.log(testMod.getX());
-
+      io.emit("4scoreandsomeyearsago", score);
 	  io.emit('connectMessage', from, msg);
   });
 
@@ -44,10 +37,20 @@ io.on('connection', function(socket){
 	  inPause = isInPause;
   });
   
-  socket.on('PauseExit', function(isInPause){
+    socket.on('PauseExit', function(isInPause){
 	  inPause = isInPause;
 	  io.emit('playerTurn');
   });
+
+  socket.on('SomeoneGetsAPoint', function(from){
+    for(i = 0; i < players.length; i++){
+      if(players[i] == from){
+          scores[i]++;
+          
+            io.emit("4scoreandsomeyearsago", score);
+          }
+      }
+   });
   
   socket.on('chatMessage', function(from, msg){
 	  if (prevFrom !== from && !inPause){

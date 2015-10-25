@@ -1,5 +1,6 @@
 var socket = io(); 
 var login = true;
+var localScore = [0,0];
 
 function submitfunction(){
   var from = $('#user').val();
@@ -97,10 +98,10 @@ function decayTime(currentTime){
 }
 
 socket.on('playerTurn', function(){
-	clearInterval(interval);
+	 	clearInterval(interval);
 	current_sec = decayTime(current_sec);
-	seconds_left = current_sec;
-    interval = setInterval(function() {
+ 	seconds_left = current_sec;
+   interval = setInterval(function() {
       document.getElementById('timer_div').innerHTML = 'Player time left: '+ --seconds_left;
 
       if (seconds_left <= 0)
@@ -113,12 +114,18 @@ socket.on('playerTurn', function(){
   }, 1000);
 });
 
+socket.on('4scoreandsomeyearsago',function(score){
+  localScore= score;
+  var ver = 'A =' + localScore[0] + '  B = ' +localScore[1];
+  document.getElementById('score').innerHTML = ver;
+
+});
 
 
 socket.on('pause', function(){
 	clearInterval(interval);
 	seconds_left = 5;
-    interval = setInterval(function() {
+   interval = setInterval(function() {
       document.getElementById('timer_div').innerHTML = 'Break time left:' + --seconds_left;
 
       if (seconds_left <= 0)
