@@ -115,8 +115,12 @@ socket.on('playerTurn', function(){
 });
 
 socket.on('4scoreandsomeyearsago',function(score){
-  localScore= score;
-  var ver = 'A =' + localScore[0] + '  B = ' +localScore[1];
+  localScore = score;
+  if (localScore[0] == 'undefined')
+	  localScore[0] = 0;
+  if (localScore[1] == 'undefined')
+	  localScore[1] = 0;
+  var ver = 'A = ' + localScore[0] + '  B = ' +localScore[1];
   document.getElementById('score').innerHTML = ver;
 
 });
