@@ -43,7 +43,7 @@ socket.on('notifyUser', function(user){
 function setName(){
   var name = document.getElementById('username').value;
   $('#user').val(name);
-  socket.emit('connectMessage', 'System', '<b>' + name + '</b> has joined the discussion');//needs to be different from chat message
+  socket.emit('connectMessage', 'System', '<b>' + name + '</b> has joined the discussion', name);//needs to be different from chat message
 }
  
 $(document).keypress(function(e) {
@@ -115,8 +115,12 @@ socket.on('playerTurn', function(){
 });
 
 socket.on('4scoreandsomeyearsago',function(score){
-  localScore= score;
-  var ver = 'A =' + localScore[0] + '  B = ' +localScore[1];
+  localScore = score;
+  if (localScore[0] === 'undefined')
+	  localScore[0] = 0;
+  if (localScore[1] === 'undefined')
+	  localScore[1] = 0;
+  var ver = 'A = ' + localScore[0] + '  B = ' +localScore[1];
   document.getElementById('score').innerHTML = ver;
 
 });
