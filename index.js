@@ -37,8 +37,8 @@ io.on('connection', function(socket){
     for(i = 0; i < players.length; i++){
       if(players[i] == from){
           scores[i]++;
-          if(i == 0){
-            document.getElementById('score').innerHTML = "A =" + scores[0] + "B = " +score[1];
+            io.emit("4scoreandsomeyearsago", function("A =" + scores[0] + "B = " +score[1]));
+            // document.getElementById('score').innerHTML = "A =" + scores[0] + "B = " +score[1];
           }
       }
     }
