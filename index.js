@@ -27,7 +27,6 @@ app.get('/index.html', function(req, res){
 
 // Register events on socket connection
 io.on('connection', function(socket){
-
   socket.on('connectMessage', function(from, msg, user){
   players.push(user);
     io.emit("4scoreandsomeyearsago", score);
