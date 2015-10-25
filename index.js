@@ -97,15 +97,16 @@ io.on('connection', function(socket){
         io.emit('randotopico', rawr);
 	  }
 	  if (prevFrom !== from && !inPause){
+
+		prevFrom = from;
+		inPause = true;
+		io.emit('pause');
+		io.emit('chatMessage', from, msg);
 		var matches = myFunction(msg);
 		if (matches > 200 || matches === 0){
 			endGame();
 			io.emit('StopThePlay');
 		}
-		prevFrom = from;
-		inPause = true;
-		io.emit('pause');
-		io.emit('chatMessage', from, msg);
 	  }
 	  if (msg === '%reset') {
 		  score = [0,0];
