@@ -26,7 +26,7 @@ function myFunction(msg) {
   }
   url += res[res.length - 1]+"&f_has_lyrics=1";
 
-  xmlhttp.open("GET", url, true);
+  xmlhttp.open("GET", url, false);
   xmlhttp.send();
   var ret = xmlhttp.responseText;
   console.log(url);
