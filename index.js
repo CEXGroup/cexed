@@ -43,7 +43,6 @@ io.on('connection', function(socket){
             document.getElementById('Bscore').innerHTML = scores[i];
 
           }
-
       }
     }
   });
