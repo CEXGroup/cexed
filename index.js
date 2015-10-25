@@ -35,15 +35,15 @@ io.on('connection', function(socket){
 
   socket.on('SomeoneGetsAPoint', function(from){
     for(i = 0; i < players.length; i++){
-    //   if(players[i] == from){
-    //       scores[i]++;
-    //       if(i == 0){
-    //         // document.getElementById('Ascore').innerHTML = scores[i];
-    //       }else{
-    //         // document.getElementById('Bscore').innerHTML = scores[i];
+      if(players[i] == from){
+          scores[i]++;
+          if(i == 0){
+            // document.getElementById('Ascore').innerHTML = scores[i];
+          }else{
+            // document.getElementById('Bscore').innerHTML = scores[i];
 
-    //       }
-    //   }
+          }
+      }
     }
   });
   
