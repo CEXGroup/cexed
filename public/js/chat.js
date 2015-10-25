@@ -98,7 +98,7 @@ socket.on('playerTurn', function(){
       {
           seconds_left = current_sec;
           clearInterval(interval);
-		  socket.emit('PauseState', true);
+		  socket.emit('PauseEnter', true);
       }
   }, 1000);
 });
@@ -114,7 +114,7 @@ socket.on('pause', function(){
           seconds_left = current_sec;
           document.getElementById('timer_div').innerHTML = 'You are ready';
           clearInterval(interval);
-		  socket.emit('PauseState', false);
+		  socket.emit('PauseExit', false);
       }
   }, 1000);
 });

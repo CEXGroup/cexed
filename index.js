@@ -24,14 +24,19 @@ io.on('connection', function(socket){
 	  io.emit('connectMessage', from, msg);
   });
 
-  socket.on('PauseState', function(isInPause){
+  socket.on('PauseEnter', function(isInPause){
+	  inPause = isInPause;
+	  io.emit('pause');
+  });
+  
+    socket.on('PauseExit', function(isInPause){
 	  inPause = isInPause;
   });
   
   socket.on('chatMessage', function(from, msg){
 	  if (prevFrom !== from && !inPause){
 		prevFrom = from;
-		io.emit('playerOnesTurn');
+		io.emit('playerTurn');
 		io.emit('chatMessage', from, msg);
 	  }
   });
