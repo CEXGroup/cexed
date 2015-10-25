@@ -5,6 +5,9 @@ var path = require('path');
 var prevFrom = '';
 var inPause = false;
 
+var players = [];
+var score = [0,0];
+
 // Initialize appication with route / (that means root of the application)
 app.get('/', function(req, res){
   var express=require('express');
@@ -21,7 +24,9 @@ app.get('/index.html', function(req, res){
 // Register events on socket connection
 io.on('connection', function(socket){
   socket.on('connectMessage', function(from, msg){
+    io.emit("4scoreandsomeyearsago", score);
 	  io.emit('connectMessage', from, msg);
+
   });
 
   socket.on('PauseEnter', function(isInPause){
@@ -37,12 +42,11 @@ io.on('connection', function(socket){
     for(i = 0; i < players.length; i++){
       if(players[i] == from){
           scores[i]++;
-            io.emit("4scoreandsomeyearsago", function("A =" + scores[0] + "B = " +score[1]));
-            // document.getElementById('score').innerHTML = "A =" + scores[0] + "B = " +score[1];
+          
+            io.emit("4scoreandsomeyearsago", score);
           }
       }
-    }
-  });
+   });
   
   socket.on('chatMessage', function(from, msg){
 	  if (prevFrom !== from && !inPause){

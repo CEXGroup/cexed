@@ -1,5 +1,6 @@
 var socket = io(); 
 var login = true;
+var localScore = [0,0];
 
 function submitfunction(){
   var from = $('#user').val();
@@ -103,10 +104,12 @@ socket.on('playerTurn', function(){
   }, 1000);
 });
 
-// socket.on('4scoreandsomeyearsago',function(score){
-//         // document.getElementById('score').innerHTML = score;
+socket.on('4scoreandsomeyearsago',function(score){
+  localScore= score;
+  var ver = 'A =' + localScore[0] + '  B = ' +localScore[1];
+  document.getElementById('score').innerHTML = ver;
 
-// });
+});
 
 
 socket.on('pause', function(){
