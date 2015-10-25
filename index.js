@@ -29,19 +29,18 @@ function myFunction(msg) {
   xmlhttp.open("GET", url, false);
   xmlhttp.send();
   var ret = JSON.parse(xmlhttp.responseText);
-  console.log(ret.message.header.available);
+  console.log('matches ' + ret.message.header.available);
   return ret.message.header.available;
 }
 
 function endGame() {
-	  console.log(players.length);
 	  for(i = 0; i < players.length; i++){
 		  console.log(players[i] + ' ' + prevFrom);
 		  if(players[i] == prevFrom){
 			  score[i]++;
 			  io.emit("4scoreandsomeyearsago", score);
 		  }
-      }
+	  }
 	  prevFrom = '';
 	  isInPause = false;
 }
@@ -62,7 +61,9 @@ app.get('/index.html', function(req, res){
 // Register events on socket connection
 io.on('connection', function(socket){
   socket.on('connectMessage', function(from, msg, user){
-    players.push(user);
+	if (players.length < 2){
+		players.push(user);
+	}
     io.emit("4scoreandsomeyearsago", score);
     io.emit('randotopico', 'Topic will be chosen when game starts!');
 	io.emit('connectMessage', from, msg);
@@ -73,7 +74,7 @@ io.on('connection', function(socket){
 	endGame();
   });
   
-    socket.on('PauseExit', function(isInPause){
+  socket.on('PauseExit', function(isInPause){
 	  inPause = isInPause;
 	  io.emit('playerTurn');
   });
@@ -95,14 +96,17 @@ io.on('connection', function(socket){
         io.emit('randotopico', rawr);
 	  }
 	  if (prevFrom !== from && !inPause){
-		if (myFunction(msg) < 50)
+		var matches = myFunction(msg);
+		if (matches > 200 || matches === 0){
 			endGame();
+			io.emit('StopThePlay');
+		}
 		prevFrom = from;
 		inPause = true;
 		io.emit('pause');
 		io.emit('chatMessage', from, msg);
 	  }
-	  if (msg = '%reset') {
+	  if (msg === '%reset') {
 		  score = [0,0];
 		  io.emit("4scoreandsomeyearsago", score);
 	  }
