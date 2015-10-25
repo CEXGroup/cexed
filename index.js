@@ -28,15 +28,11 @@ app.get('/index.html', function(req, res){
 // Register events on socket connection
 io.on('connection', function(socket){
   socket.on('connectMessage', function(from, msg){
-<<<<<<< HEAD
-    console.log(randomTopic.getTopic());
-=======
-	  console.log('hello');
-	  console.log(testMod.getX());
-      io.emit("4scoreandsomeyearsago", score);
->>>>>>> a2d748c747f6c665317b9180df02273717053fc8
-	  io.emit('connectMessage', from, msg);
+    var rawr = randomTopic.getTopic();
     io.emit('randotopico', rawr);
+    io.emit("4scoreandsomeyearsago", score);
+	  io.emit('connectMessage', from, msg);
+    
   });
 
   socket.on('GameOver', function(isInPause){
