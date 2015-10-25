@@ -9,7 +9,7 @@ var prevFrom = '';
 var inPause = false;
 
 var players = [];
-var score = [];
+var score = [0,0];
 
 // Initialize appication with route / (that means root of the application)
 app.get('/', function(req, res){
@@ -26,19 +26,19 @@ app.get('/index.html', function(req, res){
 
 // Register events on socket connection
 io.on('connection', function(socket){
-  socket.on('connectMessage', function(from, msg){
-  players.push(from);
-  score.push(0);
+  socket.on('connectMessage', function(from, msg, user){
+  players.push(user);
       io.emit("4scoreandsomeyearsago", score);
 	  io.emit('connectMessage', from, msg);
   });
 
   socket.on('GameOver', function(isInPause){
 	  inPause = isInPause;
+	  console.log(players.length);
 	  for(i = 0; i < players.length; i++){
 		  console.log(players[i] + ' ' + prevFrom);
 		  if(players[i] == prevFrom){
-			  scores[i]++;
+			  score[i]++;
 			  io.emit("4scoreandsomeyearsago", score);
 			}
       }
