@@ -8,11 +8,6 @@ var inPause = false;
 var players = [];
 var scores = [];
 
-
-
-var ap = 0;
-var bp = 0;
-
 // Initialize appication with route / (that means root of the application)
 app.get('/', function(req, res){
   var express=require('express');
@@ -42,6 +37,13 @@ io.on('connection', function(socket){
     for(int i = 0; i < players.length; i++){
       if(players[i] === from){
           scores[i]++;
+          if(i == 0){
+            document.getElementById('Ascore').innerHTML = scores[i];
+          }else{
+            document.getElementById('Bscore').innerHTML = scores[i];
+
+          }
+
       }
     }
   });
